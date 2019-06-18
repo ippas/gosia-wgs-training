@@ -4,7 +4,7 @@ comparison of two wgs methods: illumina vs 10x genomics
 ## data 
 One person's genome (stored in projects/gosia-wgs-training)
 
-#illumina:
+# illumina:
 
 1. convert 10x bcl to fastq
 * (dockerfile)[dockerfile] of Illumina bcl2fastq image
