@@ -7,7 +7,7 @@ One person's genome (stored in projects/gosia-wgs-training)
 # illumina:
 
 1. convert 10x bcl to fastq
-* (dockerfile)[dockerfile] of Illumina bcl2fastq image
+* [dockerfile][bcl2fastq-dockerfile] of Illumina bcl2fastq image
 
 
 2. fastqc
