@@ -1,5 +1,5 @@
-# gosia-wgs-training
-comparison of two wgs methods: illumina vs 10x genomics
+# ifpan-marpiech-wgs
+Comparison of two wgs methods: illumina vs 10x genomics
 
 ## data 
 one person's genome (stored in projects/ifpan-marpiech-genome)
