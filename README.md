@@ -19,6 +19,7 @@ one person's genome (stored in projects/ifpan-marpiech-genome)
 # 10x genomics
 1. use longranger to convert bcl to fastq:
 `longranger mkfastq --run . --csv SampleSheet.csv --output-dir longrangerfq`
+This step can be alternatively done with Illuminas bcl2fastq with [this code](https://gist.github.com/gosborcz/bc6896406b776c41e83c37d7568cbe1a)
 
 2. fastqc only on R2 file as I1 contains indexes and R1 barcodes, with [this docker image](https://hub.docker.com/r/pegi3s/fastqc):
 `docker run -d --rm -v $PWD:/data pegi3s/fastqc /data/<fastq_name>`
