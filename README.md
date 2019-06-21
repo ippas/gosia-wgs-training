@@ -24,15 +24,17 @@ This step can be alternatively done with Illuminas bcl2fastq with [this code](ht
 
 2. fastqc only on R2 file as I1 contains indexes and R1 barcodes, with [this docker image](https://hub.docker.com/r/pegi3s/fastqc):
 `docker run -d --rm -v $PWD:/data pegi3s/fastqc /data/<fastq_name>`
-* fastqc report can be viewed [here] http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/mp10x_S0_L001_R2_001_fastqc.html
 * Warnings: Per base sequence quality, Per tile sequence quality, Per sequence quality scores, Per base sequence content, Per sequence GC content
 
-3. continue with the longranger pipelines (here)[https://support.10xgenomics.com/genome-exome/software/pipelines/latest/what-is-long-ranger]
+3. continue with the [longranger pipelines](https://support.10xgenomics.com/genome-exome/software/pipelines/latest/what-is-long-ranger)
+**longranger wgs with gatk** 
+`gatk-package-4.0.3.0-local.jar` gatk
 
 #software versions:
 1. bcl2fastq v2.20.0.422
 2. logranger 2.2.2
 3. FastQC v0.11.7
+4. gatk 4.03 *this is for longranger as it does not suppor newer versions for now*
 
 #reference genome:
 https://console.cloud.google.com/storage/browser/genomics-public-data/resources/broad/hg38/v0
