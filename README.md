@@ -28,3 +28,11 @@ This step can be alternatively done with Illuminas bcl2fastq with [this code](ht
 * Warnings: Per base sequence quality, Per tile sequence quality, Per sequence quality scores, Per base sequence content, Per sequence GC content
 
 3. continue with the longranger pipelines (here)[https://support.10xgenomics.com/genome-exome/software/pipelines/latest/what-is-long-ranger]
+
+#software versions:
+1. bcl2fastq v2.20.0.422
+2. logranger 2.2.2
+3. FastQC v0.11.7
+
+#reference genome:
+https://console.cloud.google.com/storage/browser/genomics-public-data/resources/broad/hg38/v0
