@@ -24,11 +24,14 @@ This step can be alternatively done with Illuminas bcl2fastq with [this code](ht
 
 2. fastqc only on R2 file as I1 contains indexes and R1 barcodes, with [this docker image](https://hub.docker.com/r/pegi3s/fastqc):
 `docker run -d --rm -v $PWD:/data pegi3s/fastqc /data/<fastq_name>`
-* Warnings: Per base sequence quality, Per tile sequence quality, Per sequence quality scores, Per base sequence content, Per sequence GC content
+
 
 3. continue with the [longranger pipelines](https://support.10xgenomics.com/genome-exome/software/pipelines/latest/what-is-long-ranger)
 **longranger wgs with gatk** 
-`gatk-package-4.0.3.0-local.jar` gatk
+*longranger does not like the hg38 from Broad institute: so the download is from here : wget http://cf.10xgenomics.com/supp/genome/refdata-GRCh38-2.1.0.tar.gz*
+
+`longranger wgs --id mp10x --fastqs <directory-with-fastqs> --vcmode gatk:/opt/tools/gatk-4.0.3.0/gatk-package-4.0.3.0-logal.jar --reference <path-to-10x-provided-reference-directory> --sample=1-AK1255,1-AK1256,1-AK1257,1-AK12581
+
 
 #software versions:
 1. bcl2fastq v2.20.0.422
