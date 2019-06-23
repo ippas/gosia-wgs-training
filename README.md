@@ -39,13 +39,14 @@ This step can be alternatively done with Illuminas bcl2fastq with [this code](ht
 2. fastqc only on R2 files as I1 contain indexes and R1 barcodes, with [this docker image](https://hub.docker.com/r/pegi3s/fastqc):
 `docker run -d --rm -v $PWD:/data pegi3s/fastqc /data/<fastq_name>`
 
-
+* reports: [SI-GA-F3_1](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_1/1-AK1255_S1_L001_R2_001_fastqc.html), [SI-GA-F3_2](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_2/1-AK1256_S2_L001_R2_001_fastqc.html), [SI-GA-F3_3](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_3/1-AK1257_S3_L001_R2_001_fastqc.html), [SI-GA-F3_4](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_4/1-AK1258_S4_L001_R2_001_fastqc.html)
+* warnings: per sequence GC content, **failed: per tile sequence quality** (they all seem to have problems in the same tiles towards the ends)
 
 3. continue with the [longranger pipelines](https://support.10xgenomics.com/genome-exome/software/pipelines/latest/what-is-long-ranger)
 **longranger wgs with gatk** 
 *longranger does not like the hg38 from Broad institute: so the download is from their reference*
 * code to run long ranger:
-`longranger wgs --id mp10x --fastqs <directory-with-fastqs> --vcmode gatk:/opt/tools/gatk-4.0.3.0/gatk-package-4.0.3.0-logal.jar --reference <path-to-10x-provided-reference-directory> --sample=1-AK1255,1-AK1256,1-AK1257,1-AK12581`
+`longranger wgs --id mp10x --fastqs <directory-with-fastqs> --vcmode gatk:/opt/tools/gatk-4.0.3.0/gatk-package-4.0.3.0-local.jar --reference <path-to-10x-provided-reference-directory> --sample=1-AK1255,1-AK1256,1-AK1257,1-AK12581`
 
 
 #software versions:
