@@ -12,7 +12,10 @@ one person's genome (stored in projects/ifpan-marpiech-genome)
 * fastqc reports [for R1](http://149.156.177.112/projects/ifpan-marpiech-wgs/illumina-fq/mp_S0_L002_R1_001_fastqc.html) and [for R2](http://149.156.177.112/projects/ifpan-marpiech-wgs/illumina-fq/mp_S0_L002_R2_001_fastqc.html)
 * Warnings (in both cases): Per tile sequence quality and per sequence GC content
 
-3. alignment bwa-mem do hg38 z broadinstitute to bam (https://storage.cloud.google.com/genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta?_ga=2.192558178.-935441401.1560518376) + fai
+3. alignment with bwa-mem to [hg38 from broadinstitute](https://storage.cloud.google.com/genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta?_ga=2.192558178.-935441401.1560518376) to bam:
+* in a [docker container supplied by broad institute](https://hub.docker.com/r/broadinstitute/genomes-in-the-cloud)
+
+`bwa mem ...`
 
 4. gatk best practices variant calling
 
@@ -49,11 +52,11 @@ This step can be alternatively done with Illuminas bcl2fastq with [this code](ht
 `longranger wgs --id mp10x --fastqs <directory-with-fastqs> --vcmode gatk:/opt/tools/gatk-4.0.3.0/gatk-package-4.0.3.0-local.jar --reference <path-to-10x-provided-reference-directory> --sample=1-AK1255,1-AK1256,1-AK1257,1-AK12581`
 
 
-#software versions:
-1. bcl2fastq v2.20.0.422
-2. logranger 2.2.2
-3. FastQC v0.11.7
-4. gatk 4.03 *this is for longranger as it does not suppor newer versions for now*
+# software versions:
+1. bcl2fastq v2.20.0.422 (on server)
+2. logranger 2.2.2 (on server)
+3. FastQC v0.11.7 (docker container)
+4. gatk 4.03 *this is for longranger as it does not suppor newer versions for now* (on server)
 
 #reference genome:
 1. For Illumina: https://console.cloud.google.com/storage/browser/genomics-public-data/resources/broad/hg38/v0 + .fai
