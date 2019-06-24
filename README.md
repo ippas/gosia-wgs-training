@@ -17,7 +17,7 @@ one person's genome (stored in projects/ifpan-marpiech-genome)
 * indexing with bwa:
 `docker run -v $PWD:/data intelliseq/bwa:latest bwa index /data/hg38/Homo_sapiens_assembly38.fasta`
 * alignment with bwa: 
-`docker run -v $PWD:/data intelliseq/bwa:latest bwa mem -v 3 -Y -K 10000000 data/hg38/Homo_sapiens_assembly38.fasta data/illumina-fq/mp_S0_L002_R1_001.fastq.gz data/illumina-fq/mp_S0_L002_R2_001.fastq.gz > mp-aln-illumina.sam`
+`docker run -t 8 -v $PWD:/data intelliseq/bwa:latest bwa mem -v 3 -Y -K 10000000 -t 8 data/hg38/Homo_sapiens_assembly38.fasta data/illumina-fq/mp_S0_L002_R1_001.fastq.gz data/illumina-fq/mp_S0_L002_R2_001.fastq.gz > mp-aln-illumina.sam`
 
 4. gatk best practices variant calling
 
