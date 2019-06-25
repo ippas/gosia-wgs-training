@@ -16,12 +16,8 @@ one person's genome (stored in projects/ifpan-marpiech-genome)
 * in an intelliseq docker container (add dockerfile from Marcin)
 * indexing with bwa:
 `docker run -v $PWD:/data intelliseq/bwa:latest bwa index /data/hg38/Homo_sapiens_assembly38.fasta`
-* alignment with bwa: 
-`docker run -v $PWD:/data intelliseq/bwa:latest bwa mem -t 8 -v 3 -Y -K 10000000 -t 8 data/hg38/Homo_sapiens_assembly38.fasta data/illumina-fq/mp_S0_L002_R1_001.fastq.gz data/illumina-fq/mp_S0_L002_R2_001.fastq.gz > mp-aln-illumina.sam`
-* samblaster to mark duplicates
-`docker run -d -v $PWD:/data intelliseq/bwa:latest samblaster -i /data/mp-aln-illumina.sam -o /data/mp-markdup-illumina.sam`
-* samtools to sort and covert to .bam
-`docker run -d -v $PWD:/data intelliseq/bwa:latest samtools sort -@ 2 -o /data/mp-markdup-illumina.bam /data/mp-markdup-illumina.sam`
+* alignment with bwa + samblaster + samtools sort
+`docker run -d -v $PWD:/data intelliseq/bwa:latest bwa mem -t 6 -v 3 -Y -K 10000000 data/hg38/Homo_sapiens_assembly38.fasta data/illumina-fq/mp_S0_L002_R1_001.fastq.gz data/illumina-fq/mp_S0_L002_R2_001.fastq.gz 2> mp.illumina.bwa.stderr.log | samblaster 2> mp.illumina.samblaster.stderr.log | samtools sort -@ 3 - > mp.illumina.markdup.bam`
 
 4. gatk best practices variant calling
 
