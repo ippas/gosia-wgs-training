@@ -18,8 +18,11 @@ one person's genome (stored in projects/ifpan-marpiech-genome)
 `docker run -v $PWD:/data intelliseq/bwa:latest bwa index /data/hg38/Homo_sapiens_assembly38.fasta`
 * alignment with bwa: 
 `docker run -v $PWD:/data intelliseq/bwa:latest bwa mem -t 8 -v 3 -Y -K 10000000 -t 8 data/hg38/Homo_sapiens_assembly38.fasta data/illumina-fq/mp_S0_L002_R1_001.fastq.gz data/illumina-fq/mp_S0_L002_R2_001.fastq.gz > mp-aln-illumina.sam`
-* samblaster
+* samblaster to mark duplicates
 `docker run -d -v $PWD:/data intelliseq/bwa:latest samblaster -i /data/mp-aln-illumina.sam -o /data/mp-markdup-illumina.sam`
+* samtools to sort and covert to .bam
+`docker run -d -v $PWD:/data intelliseq/bwa:latest samtools sort -@ 2 -o /data/mp-markdup-illumina.bam /data/mp-markdup-illumina.sam`
+
 4. gatk best practices variant calling
 
 
@@ -61,7 +64,9 @@ This step can be alternatively done with Illuminas bcl2fastq with [this code](ht
 3. FastQC v0.11.7 (docker container)
 4. gatk 4.03 *this is for longranger as it does not suppor newer versions for now* (on server)
 5. bwa (intelliseq container): Version: 0.7.17-r1188
+6. samblaster (intelliseq container): Version 0.1.24
+7. samtools (intelliseq container): Version 1.8
 
-#reference genome:
+# reference genome:
 1. For Illumina: https://console.cloud.google.com/storage/browser/genomics-public-data/resources/broad/hg38/v0 + .fai
 2. For 10x: http://cf.10xgenomics.com/supp/genome/refdata-GRCh38-2.1.0.tar.gz
