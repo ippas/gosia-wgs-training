@@ -53,14 +53,24 @@ This step can be alternatively done with Illuminas bcl2fastq with [this code](ht
 
 3. continue with the [longranger pipelines](https://support.10xgenomics.com/genome-exome/software/pipelines/latest/what-is-long-ranger)
 **longranger wgs with gatk** 
-*longranger does not like the hg38 from Broad institute: so the download is from their reference*
+* longranger does not like the hg38 from Broad institute: so the download is from their reference and it needs java 1.8
+* preparing the docker container (adding gatk 4.0.3) based on [biocontainer/longranger](https://hub.docker.com/r/biocontainers/longranger):
+```
+docker run -it biocontainers/longranger:v2.2.2_cv2 /bin/bash
+      # cd /home/biodocker
+      # wget https://github.com/broadinstitute/gatk/releases/download/4.0.3.0/gatk-4.0.3.0.zip
+      # unzip gatk-4.0.3.0.zip
+      # exit
+docker commit jovial_dewdney longrangergatk:l2.2.2g4.03
+```
+
 * code to run long ranger:
-`longranger wgs --id mp10x --fastqs <directory-with-fastqs> --vcmode gatk:/opt/tools/gatk-4.0.3.0/gatk-package-4.0.3.0-local.jar --reference <path-to-10x-provided-reference-directory> --sample=1-AK1255,1-AK1256,1-AK1257,1-AK12581`
+`docker run -d -v $PWD:/data longrangergatk:l2.2.2g4.03 longranger wgs --id mp10x --fastqs /data/10x-fq --vcmode gatk:/home/biodocker/gatk-4.0.3.0/gatk-package-4.0.3.0-local.jar --reference /data/hg38/refdata-GRCh38-2.1.0 --sample=1-AK1255,1-AK1256,1-AK1257,1-AK12581`
 
 
 # software versions:
 1. bcl2fastq v2.20.0.422 (on server)
-2. logranger 2.2.2 (on server)
+2. logranger 2.2.2 (docker container)
 3. FastQC v0.11.7 (docker container)
 4. gatk 4.03 *this is for longranger as it does not suppor newer versions for now* (on server)
 5. bwa (intelliseq container): Version: 0.7.17-r1188
