@@ -19,13 +19,8 @@ one person's genome (stored in projects/ifpan-marpiech-genome)
 * getting the rg_id:
 `zcat -f mp_S0_L002_R1_001.fastq.gz | head -1 | cut -d ':' -f 3,4 | sed 's/:/\./g'`, out: `HYFFWCCXY.2`
 * alignment with bwa 
-`docker run -d -v $PWD:/data intelliseq/bwa:latest bwa mem \
-      -t 6 \
-      -R "@RG\tID:HYFFWCCXY.2\tPU:HYFFWCCXY.2.mp-illumina\tPL:Illumina\tLB:mp-illumina.library\tSM:mp-illumina" \
-      -K 10000000 \
-      -v 3 \
-      -Y /data/hg38/Homo_sapiens_assembly38.fasta \
-      /data/illumina-fq/mp_S0_L002_R1_001.fastq.gz /data/illumina-fq/mp_S0_L002_R2_001.fastq.gz 2> mp.illumina.bwa.stderr.log > mp.illumina.sam`
+`docker run -d -v $PWD:/data intelliseq/bwa:latest bwa mem -t 6 -R "@RG\tID:HYFFWCCXY.2\tPU:HYFFWCCXY.2.mp-illumina\tPL:Illumina\tLB:mp-illumina.library\tSM:mp-illumina" -K 10000000 -v 3 -Y /data/hg38/Homo_sapiens_assembly38.fasta /data/illumina-fq/mp_S0_L002_R1_001.fastq.gz /data/illumina-fq/mp_S0_L002_R2_001.fastq.gz 2> mp.illumina.bwa.stderr.log > mp.illumina.sam`
+
 * + samblaster + samtools sort 
 
 4. gatk best practices variant calling
