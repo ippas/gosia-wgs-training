@@ -22,7 +22,8 @@ one person's genome (stored in projects/ifpan-marpiech-genome)
 `docker run -d -v $PWD:/data intelliseq/bwa:latest bwa mem -t 6 -R "@RG\tID:HYFFWCCXY.2\tPU:HYFFWCCXY.2.mp-illumina\tPL:Illumina\tLB:mp-illumina.library\tSM:mp-illumina" -K 10000000 -v 3 -Y /data/hg38/Homo_sapiens_assembly38.fasta /data/illumina-fq/mp_S0_L002_R1_001.fastq.gz /data/illumina-fq/mp_S0_L002_R2_001.fastq.gz 2> mp.illumina.bwa.stderr.log > mp.illumina.sam`
 * samblaster 
 `docker run -v $PWD:/data intelliseq/bwa:latest samblaster -i /data/mp.illumina.sam -o /data/mp.illumina.markdup.sam 2> mp.illumina.bwa.samblaster.stderr.log`
-* samtools sort 
+* samtools sort
+`docker run -v $PWD:/data intelliseq/bwa:latest samtools sort -o /data/mp.illumina.markdup.bam -@ 6 /data/mp.illumina.sam`
 * after .bam creation I have rm the .sam files (they are huuuuuge)
 
 4. gatk:
@@ -69,7 +70,7 @@ docker run -it biocontainers/longranger:v2.2.2_cv2 /bin/bash
 docker commit jovial_dewdney longrangergatk:l2.2.2g4.03
 ```
 
-* code to run long ranger:
+* code to run longranger wgs:
 `docker run -d -v $PWD:/data longrangergatk:l2.2.2g4.03 longranger wgs --id mp10x --fastqs /data/10x-fq --vcmode gatk:/home/biodocker/gatk-4.0.3.0/gatk-package-4.0.3.0-local.jar --reference /data/hg38/refdata-GRCh38-2.1.0 --sample=1-AK1255,1-AK1256,1-AK1257,1-AK12581`
 
 
