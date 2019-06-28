@@ -25,7 +25,10 @@ one person's genome (stored in projects/ifpan-marpiech-genome)
 * samtools sort 
 * after .bam creation I have rm the .sam files (they are huuuuuge)
 
-4. gatk best practices variant calling
+4. gatk:
+* generate .bai with picard: `docker run -v $PWD:/data broadinstitute/picard:latest BuildBamIndex I=/data/mp.illumina.markdup.bam`
+* run gatk: `docker run -v $PWD:/gatk/data broadinstitute/gatk:latest gatk HaplotypeCaller -R data/hg38/Homo_sapiens_assembly38.fasta -I data/mp.illumina.markdup.bam -output data/output.raw.snps.indels.vcf`
+
 
 
 # 10x genomics
