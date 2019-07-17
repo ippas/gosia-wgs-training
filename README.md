@@ -75,6 +75,8 @@ docker commit jovial_dewdney longrangergatk:l2.2.2g4.03
 
 * using 10x loupe software to visualise 10x data (download instructions here: https://support.10xgenomics.com/genome-exome/software/downloads/latest). `ssh -L 3001:localhost:3001 ifpan "LOUPE_PORT=3001 LOUPE_SERVER=../loupe-dir ../loupe/start_loupe.sh"`. Then navigate in you local browser: localhost:3001
 
+## Bam visualisation in IGV
+* page source code can be found [here](alignments.html)
 
 # software versions:
 1. bcl2fastq v2.20.0.422 (on server)
