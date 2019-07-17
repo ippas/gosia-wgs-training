@@ -1,7 +1,9 @@
 # ifpan-marpiech-wgs
+
+[interactive view of aligmnents](http://149.156.177.112/projects/ifpan-marpiech-wgs/alignments.html)
+
 Comparison of two wgs methods: illumina vs 10x genomics
 
-##[interactive view of aligmnents](http://149.156.177.112/projects/ifpan-marpiech-wgs/alignments.html)
 
 ## data
 one person's genome (stored in projects/ifpan-marpiech-genome)
