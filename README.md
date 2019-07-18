@@ -79,7 +79,9 @@ docker commit jovial_dewdney longrangergatk:l2.2.2g4.03
 
 * using 10x loupe software to visualise 10x data (download instructions here: https://support.10xgenomics.com/genome-exome/software/downloads/latest). `ssh -L 3001:localhost:3001 ifpan "LOUPE_PORT=3001 LOUPE_SERVER=../loupe-dir ../loupe/start_loupe.sh"`. Then navigate in you local browser: localhost:3001
 
-* In the fastq files tht 151th bp was not trimmed. Fastx_trimmer was used [in this docker container](https://hub.docker.com/r/biocontainers/fastxtools): `docker run -d --rm -v /:/data biocontainers/fastxtools:v0.0.14_cv2 fastx_trimmer -f 1 -l 150 -z -i /data/[path-to-input-file] -o /data/[path-to-output-file]`
+* In the fastq files tht 151th bp was not trimmed. [seqtk](https://github.com/lh3/seqtk) was used [in this docker container](https://hub.docker.com/r/biocontainers/seqtk): 
+```docker run -d --rm -v /:/data biocontainers/seqtk:v1.2-1-deb_cv1 bash
+      $ seqtk trimfq -e 1 /data/[path-to-input] > /data/[path-to-input]```
 
 
 ## Bam visualisation in IGV
