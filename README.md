@@ -55,7 +55,7 @@ one person's genome (stored in projects/ifpan-marpiech-genome)
 
 This step can be alternatively done with Illuminas bcl2fastq with [this code](https://gist.github.com/gosborcz/bc6896406b776c41e83c37d7568cbe1a)
 
-2. fastqc only on R2 files as I1 contains indexes and R1 barcodes, with [this docker image](https://hub.docker.com/r/pegi3s/fastqc):
+2. fastqc only on R1 and R2 files as I1 contains indexes, with [this docker image](https://hub.docker.com/r/pegi3s/fastqc):
 `docker run -d --rm -v $PWD:/data pegi3s/fastqc /data/<fastq_name>`
 
 * reports: [SI-GA-F3_1](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_1/1-AK1255_S1_L001_R2_001_fastqc.html), [SI-GA-F3_2](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_2/1-AK1256_S2_L001_R2_001_fastqc.html), [SI-GA-F3_3](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_3/1-AK1257_S3_L001_R2_001_fastqc.html), [SI-GA-F3_4](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_4/1-AK1258_S4_L001_R2_001_fastqc.html)
@@ -79,12 +79,16 @@ docker commit jovial_dewdney longrangergatk:l2.2.2g4.03
 
 * using 10x loupe software to visualise 10x data (download instructions here: https://support.10xgenomics.com/genome-exome/software/downloads/latest). `ssh -L 3001:localhost:3001 ifpan "LOUPE_PORT=3001 LOUPE_SERVER=../loupe-dir ../loupe/start_loupe.sh"`. Then navigate in you local browser: localhost:3001
 
-* In the fastq files tht 151th bp was not trimmed. [seqtk](https://github.com/lh3/seqtk) was used [in this docker container](https://hub.docker.com/r/biocontainers/seqtk): 
+# Files from 10x with standard Illumina pipeline
+
+* In the fastq files form 10x the 151th bp was not trimmed. [seqtk](https://github.com/lh3/seqtk) was used [in this docker container](https://hub.docker.com/r/biocontainers/seqtk): 
 ```
 docker run -d --rm -v /:/data biocontainers/seqtk:v1.2-1-deb_cv1 bash
       $ seqtk trimfq -e 1 /data/[path-to-input] > /data/[path-to-input]
  ```
  seqtk was used to trimm all R1 and R2 files from longranger to 150 bp pieces (contain 150trimmed in the name)
+ 
+ * R1 reads further contain 22bp sequence (16bp barcode + 6bp adapter) which were also removed:
  
 
 ## Bam visualisation in IGV
