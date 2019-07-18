@@ -80,9 +80,12 @@ docker commit jovial_dewdney longrangergatk:l2.2.2g4.03
 * using 10x loupe software to visualise 10x data (download instructions here: https://support.10xgenomics.com/genome-exome/software/downloads/latest). `ssh -L 3001:localhost:3001 ifpan "LOUPE_PORT=3001 LOUPE_SERVER=../loupe-dir ../loupe/start_loupe.sh"`. Then navigate in you local browser: localhost:3001
 
 * In the fastq files tht 151th bp was not trimmed. [seqtk](https://github.com/lh3/seqtk) was used [in this docker container](https://hub.docker.com/r/biocontainers/seqtk): 
-``` docker run -d --rm -v /:/data biocontainers/seqtk:v1.2-1-deb_cv1 bash
+```
+docker run -d --rm -v /:/data biocontainers/seqtk:v1.2-1-deb_cv1 bash
       $ seqtk trimfq -e 1 /data/[path-to-input] > /data/[path-to-input]
  ```
+ seqtk was used to trimm all R1 and R2 files from longranger to 150 bp pieces (contain 150trimmed in the name)
+ 
 
 ## Bam visualisation in IGV
 * page source code can be found [here](alignments.html)
