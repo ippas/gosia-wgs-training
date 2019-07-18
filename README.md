@@ -6,7 +6,7 @@ Comparison of two wgs methods: illumina vs 10x genomics
 
 
 ## data
-one person's genome (stored in projects/ifpan-marpiech-genome)
+one person's genome
 
 # illumina:
 1. convert 10x bcl to fastq wih bcl2fastq2 with [this code](https://gist.github.com/gosborcz/b31df08f6bb8b83c51f7a310f8f2bcc1)
@@ -58,7 +58,7 @@ This step can be alternatively done with Illuminas bcl2fastq with [this code](ht
 2. fastqc only on R1 and R2 files as I1 contains indexes, with [this docker image](https://hub.docker.com/r/pegi3s/fastqc):
 `docker run -d --rm -v $PWD:/data pegi3s/fastqc /data/<fastq_name>`
 
-* reports: [SI-GA-F3_1](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_1/1-AK1255_S1_L001_R2_001_fastqc.html), [SI-GA-F3_2](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_2/1-AK1256_S2_L001_R2_001_fastqc.html), [SI-GA-F3_3](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_3/1-AK1257_S3_L001_R2_001_fastqc.html), [SI-GA-F3_4](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_4/1-AK1258_S4_L001_R2_001_fastqc.html)
+* reports for R1 files: [SI-GA-F3_1](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_1/1-AK1255_S1_L001_R1_001_fastqc.html), [SI-GA-F3_2](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_2/1-AK1256_S2_L001_R1_001_fastqc.html), [SI-GA-F3_3](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_3/1-AK1257_S3_L001_R1_001_fastqc.html), [SI-GA-F3_4](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_4/1-AK1258_S4_L001_R1_001_fastqc.html) for R2 files: [SI-GA-F3_1](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_1/1-AK1255_S1_L001_R2_001_fastqc.html), [SI-GA-F3_2](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_2/1-AK1256_S2_L001_R2_001_fastqc.html), [SI-GA-F3_3](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_3/1-AK1257_S3_L001_R2_001_fastqc.html), [SI-GA-F3_4](http://149.156.177.112/projects/ifpan-marpiech-wgs/10x-fq/Chromium_20190402/SI-GA-F3_4/1-AK1258_S4_L001_R2_001_fastqc.html)
 * warnings: per sequence GC content, **failed: per tile sequence quality** (they all seem to have problems in the same tiles towards the ends)
 
 3. continue with the [longranger pipelines](https://support.10xgenomics.com/genome-exome/software/pipelines/latest/what-is-long-ranger)
