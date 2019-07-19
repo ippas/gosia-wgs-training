@@ -89,6 +89,7 @@ docker run -d --rm -v /:/data biocontainers/seqtk:v1.2-1-deb_cv1 bash
  seqtk was used to trimm all R1 and R2 files from longranger to 150 bp pieces (contain 150trimmed in the name)
  
  * R1 reads further contain 22bp sequence (16bp barcode + 6bp adapter) which were also removed:
+ `docker run --rm -v $PWD:/data biocontainers/seqtk:v1.2-1-deb_cv1 bash -c 'seqtk trimfq -b 22 /data/[input-filename] > /data/[outputfilename]'`
  
 
 ## Bam visualisation in IGV
