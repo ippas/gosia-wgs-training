@@ -17,7 +17,7 @@ one person's genome
 * Warnings (in both cases): Per tile sequence quality and per sequence GC content
 
 3. alignment with bwa-mem to [hg38 from broadinstitute](https://storage.cloud.google.com/genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta?_ga=2.192558178.-935441401.1560518376) to bam:
-* in an intelliseq docker container (add dockerfile from Marcin)
+* in an [intelliseq docker container](https://gitlab.com/intelliseq/workflows/raw/master/src/main/docker/fastqc/0.11.17_v1.0/Dockerfile)
 * indexing with bwa:
 `docker run -v $PWD:/data intelliseq/bwa:latest bwa index /data/hg38/Homo_sapiens_assembly38.fasta`
 * getting the rg_id:
