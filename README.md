@@ -27,7 +27,7 @@ one person's genome
 * samblaster
 `docker run -v $PWD:/data intelliseq/bwa:latest samblaster -i /data/mp.illumina.sam -o /data/mp.illumina.markdup.sam 2> mp.illumina.bwa.samblaster.stderr.log`
 * samtools sort
-`docker run -v $PWD:/data intelliseq/bwa:latest samtools sort -o /data/mp.illumina.markdup.bam -@ 6 /data/mp.illumina.sam`
+`docker run -v $PWD:/data intelliseq/bwa:latest samtools sort -o /data/mp.illumina.markdup.bam -@ 6 /data/m.illumina.markdup.sam`
 * after .bam creation I have rm the .sam files (they are huuuuuge)
 
 4. gatk:
